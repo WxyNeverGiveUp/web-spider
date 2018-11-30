@@ -1,0 +1,25 @@
+{
+  "name": "web-spider",
+  "version": "0.0.0",
+  "description": "web-spider by node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WxyNeverGiveUp/web-spider.git"
+  },
+  "keywords": [
+    "node",
+    "typescript",
+    "vue",
+    "Echarts"
+  ],
+  "author": "wuxy720",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WxyNeverGiveUp/web-spider/issues"
+  },
+  "homepage": "https://github.com/WxyNeverGiveUp/web-spider#readme"
+}
