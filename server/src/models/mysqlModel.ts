@@ -69,7 +69,6 @@ export function handlerData(datas: any[], pk: string) {
                 continue
             }
             for (let k = 0; k < property_names.length; ++k) {
-
                 if (pk === property_names[k]) {
                     result[datas[i][k]] = tmp
                 }
