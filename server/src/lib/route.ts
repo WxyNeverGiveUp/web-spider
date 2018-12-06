@@ -2,6 +2,9 @@ import * as path from 'path'
 import * as Router from "koa-router";
 import * as Koa from 'koa'
 import { readdirSync } from 'fs';
+import { getConfig } from "../config/config";
+
+const serverConfig = getConfig().server
 
 /**
  * 请求的
@@ -75,9 +78,5 @@ export function makeRouter(app: Koa) {
     /**
      * 挂在所有中间件
      */
-    console.log(app)
-    console.log(router)
-    console.log(app)
-
     return app
 }

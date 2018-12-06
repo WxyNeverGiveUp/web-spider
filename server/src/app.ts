@@ -17,19 +17,19 @@ let server = http.createServer(app.callback());
  * Listen on provided port, on all network interfaces.
  */
 
+server.listen(serverConfig.port)
+server.on('listening', onListening)
+
 /**
  * use router
  */
 makeRouter(app)
 
-server.listen(serverConfig.port)
-server.on('listening', onListening)
- 
   
 /**
  * Event listener for HTTP server "listening" event.
  */
   
 function onListening() {
-    console.log('now listening on port:', serverConfig.port)
+    console.log('web-spider server running:', serverConfig.ip + ':' + serverConfig.port)
 }
