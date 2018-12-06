@@ -2,9 +2,6 @@ import * as path from 'path'
 import * as Router from "koa-router";
 import * as Koa from 'koa'
 import { readdirSync } from 'fs';
-import { getConfig } from "../config/config";
-
-const serverConfig = getConfig().server
 
 /**
  * 请求的
