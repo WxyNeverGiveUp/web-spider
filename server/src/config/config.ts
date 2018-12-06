@@ -3,7 +3,7 @@ export function getConfig(): Config.Options {
         server: {
             "secret": '6a03578a1ad3984e918df7c920b6be5d',
             "ip": '127.0.0.1',
-            "port": 58000,
+            "port": 3000,
             "machine_id": 1,
             "env": "test",
             "log_path": 'D:/workspace/restaurant/server/dist/log',

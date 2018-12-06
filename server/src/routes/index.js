@@ -1,8 +1,4 @@
-// const router = require('koa-router')()
-
-import koa from 'koa-router'
-
-router = koa
+const router = require('koa-router')()
 
 router.get('/', async (ctx, next) => {
   await ctx.render('index', {
