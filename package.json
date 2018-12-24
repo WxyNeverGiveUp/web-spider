@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/WxyNeverGiveUp/web-spider/issues"
   },
-  "homepage": "https://github.com/WxyNeverGiveUp/web-spider#readme"
+  "homepage": "https://github.com/WxyNeverGiveUp/web-spider#readme",
+  "devDependencies": {
+    "@types/superagent": "^3.8.5"
+  }
 }

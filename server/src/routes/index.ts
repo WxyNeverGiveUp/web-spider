@@ -1,13 +1,6 @@
 import { Route } from "../lib/route"
-import * as Koa from 'koa'
+import { test } from "../controller/test"
 
-async function test(ctx: Koa.Context) {
-    console.log(ctx.query)
-    
-    ctx.body = {
-        data: 123312
-    }
-}
 export = [new Route({
     cmd:'test',
     handler: [test],

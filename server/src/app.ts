@@ -25,7 +25,6 @@ server.on('listening', onListening)
  */
 makeRouter(app)
 
-  
 /**
  * Event listener for HTTP server "listening" event.
  */

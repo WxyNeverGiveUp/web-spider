@@ -66,7 +66,7 @@ export function makeRouter(app: Koa) {
             if (!cmd_path) {
                 console.log(`[baseMid:] ready`)
             } else {
-                console.log(`[cmd]: [${subPath + cmd_path}] ready`)
+                console.log(`[route]: [${subPath + cmd_path}] ready`)
             }
         }
         router.use(subPath, subRouter.routes(), subRouter.allowedMethods())
