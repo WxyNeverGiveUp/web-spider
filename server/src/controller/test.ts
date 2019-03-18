@@ -5,7 +5,7 @@ import { commonRequest } from '../util/requestClass';
 export async function test(ctx: Koa.Context) {
     const $ = cheerio.load('<h2>你们好</h2>')
     console.log(ctx.query)
-    console.log(commonRequest)
+    commonRequest.ajaxGet('http://127.0.0.1:3000/index/hupu', {jdaddddd: 12123})
     ctx.body = {
         data: $('h2').text()
     }

@@ -69,3 +69,13 @@ declare namespace Config {
         mysql: Mysql
     }
 }
+
+declare namespace mysqlTable {
+    type message = {
+        name: string
+    }
+}
+
+declare const enum AppCode {
+    done = 0
+}

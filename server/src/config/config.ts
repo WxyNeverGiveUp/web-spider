@@ -26,7 +26,7 @@ export function getConfig(): Config.Options {
         mysql: {
             "host": "localhost",
             "port": 3306,
-            "db": "restaurant_game",
+            "db": "db_spider",
             "user": "root",
             "password": "root",
             "max": 10,

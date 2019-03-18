@@ -31,6 +31,7 @@
     "@types/superagent": "^3.8.5",
     "mysql": "^2.16.0",
     "nodemon": "^1.8.1",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "superagent": "^4.1.0"
   }
 }

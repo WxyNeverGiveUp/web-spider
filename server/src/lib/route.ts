@@ -4,7 +4,7 @@ import * as Koa from 'koa'
 import { readdirSync } from 'fs';
 
 /**
- * 请求的
+ * 请求的方式
  */
 type MethodType = 'get' | 'post'
 
@@ -20,7 +20,7 @@ export class Route{
     cmd: string
     method: RequestMethod
     handlers: string[]
-    constructor(opts: {cmd: string, handler: any[], method: MethodType}){
+    constructor(opts: {cmd: string, handler: any[], method?: MethodType}){
         this.cmd = opts.cmd
         this.handlers = opts.handler
         this.method = RequestMethod[opts.method]
@@ -59,6 +59,7 @@ export function makeRouter(app: Koa) {
             } else {
                 if (routes[j].method === RequestMethod.get) {
                     subRouter.get(cmd_path, compose(routes[j].handlers))
+                    subRouter.post(cmd_path, compose(routes[j].handlers))
                 } else {
                     subRouter.post(cmd_path, compose(routes[j].handlers))
                 }
