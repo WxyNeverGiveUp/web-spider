@@ -23,6 +23,7 @@ server.on('listening', onListening)
  * use baseMid 处理同中间件 专门用来处理某些信息
  */
 app.use(async (ctx: Koa.Context, next) => {
+    ctx.set('Access-Control-Allow-Origin', '*') // 允许跨域
     const start = new Date().getTime()
     if (!ctx.query.data) {
         ctx.query.data = {}

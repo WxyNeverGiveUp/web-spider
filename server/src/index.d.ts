@@ -79,3 +79,30 @@ declare namespace mysqlTable {
 declare const enum AppCode {
     done = 0
 }
+
+declare namespace routeParams {
+    /**
+     * 获取工作信息
+     */
+    namespace getJobs {
+        interface request {
+            pageSize: number,
+            pageNum: number
+        }
+        interface response {
+
+        }
+    }
+    /**
+     * 获取新闻信息
+     */
+    namespace getNews {
+        interface request {
+            pageSize: number,
+            pageNum: number
+        }
+        interface response {
+
+        }
+    }
+}
