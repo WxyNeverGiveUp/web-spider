@@ -91,13 +91,12 @@ export default {
 	name: 'HelloWorld',
 	data () {
 		return {
-		msg: 'Welcome to Your Vue.js App'
+			msg: 'Welcome to Your Vue.js App'
 		}
 	},
   	created() {
 		this.$axios.get('http://localhost:3000/index/lagou/jobs?pageNum=2&pageSize=10').then((response) =>{          //这里使用了ES6的语法
 			console.log(response)       //请求成功返回的数据
-			console.log('走到这里了吗')
 		}).catch((error) =>{
 			console.log(error.response)
 			console.log(error)       //请求失败返回的数据

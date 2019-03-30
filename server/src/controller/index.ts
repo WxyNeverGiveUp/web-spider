@@ -26,7 +26,8 @@ export async function getJobs(ctx: Koa.Context) {
         salary: string,
         exp: string,
         time: string,
-        emplType: string
+        emplType: string,
+        positionURL: string
     }
     let jobs: job[] = []
     await new Promise((resolve, reject) => {
@@ -51,7 +52,8 @@ export async function getJobs(ctx: Koa.Context) {
                         exp: item.workingExp.name, // 工作年限
                         time: item.createDate, // 发布时间
                         url: item.company.url, // 网址
-                        emplType: item.emplType // 招聘类型
+                        emplType: item.emplType, // 招聘类型
+                        positionURL: item.positionURL // 岗位详情
                     }        
                     console.log(job.company)  //控制台输出岗位名
                     if (job.company) {
