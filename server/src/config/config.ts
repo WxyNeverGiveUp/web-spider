@@ -8,7 +8,7 @@ export function getConfig(): Config.Options {
             "env": "test",
             "log_path": 'D:/workspace/restaurant/server/dist/log',
             "clear_index_file":'D:/workspace/restaurant/server/src/index.d.ts',
-            "mount": '', //待修改
+            "mount": 'web_spider', //待修改
             "debug": SwitchValue.OFF
         },
         redis: {

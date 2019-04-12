@@ -1,11 +1,72 @@
 import * as Koa from 'koa'
 import * as cheerio from 'cheerio'
 import * as https from 'https'
-// import { mysqlFactory } from '../models/mysqlModel'
+import { cacheKeyVal } from '../models/redisModel';
+import { getConfig } from '../config/config';
 
-// const messageTable = mysqlFactory<mysqlTable.message>({
-//     table: 'message'
-// })
+/**
+ * 获取静态网页数据
+ * @param ctx 
+ */
+export async function getNews(ctx: Koa.Context) {
+    const url = 'https://voice.hupu.com/nba'
+    const { pageNum = 1 }: routeParams.getNews.request = ctx.query
+    let news: {
+        title: string,
+        time: string,
+        comeFrom: string
+    }[] = []
+    await new Promise((resolve) => {
+        https.get(url + '/' + pageNum, (res) => { //通过get方法获取对应地址中的页面信息
+            let chunks: any[] = []
+            let size = 0
+            res.on('data', (chunk) => { //监听事件 传输
+                chunks.push(chunk)
+                size += chunk.length
+            })
+            res.on('end', () => { //数据传输完
+                let data = Buffer.concat(chunks, size) 
+                let html = data.toString()
+                let $ = cheerio.load(html, {decodeEntities: false}) //cheerio模块开始处理 DOM处理
+                
+                $(".news-list li").each(function(){   // 新闻列表
+                    let oneNews: {
+                        title: string,
+                        time: string,
+                        comeFrom: string,
+                        link: string
+                    } = {
+                        title: $(this).find('h4 a').text(), // 新闻名字
+                        time: $(this).find('.otherInfo .time').attr('title'),
+                        comeFrom: $(this).find('.otherInfo .comeFrom a').text(),
+                        link: $(this).find('h4 a').attr('href')
+                    }
+
+                    if (oneNews.title) {
+                        console.log(oneNews.title)  //控制台输出新闻信息
+                        news.push(oneNews) 
+                    } 
+                })
+                resolve(news)
+            })
+        })
+    })
+    ctx.body = {
+        data: news
+    }
+}
+
+
+
+export async function testRedis(ctx: Koa.Context) {
+    const pre = getConfig().server.mount
+    let keyValueModel = new cacheKeyVal(pre)
+    await keyValueModel.set('test', '1')
+    console.log(await keyValueModel.get('test'))
+    ctx.body = {
+        data: '???'
+    }
+}
 
 /**
  * 获取动态网页数据
@@ -55,7 +116,7 @@ export async function getJobs(ctx: Koa.Context) {
                         emplType: item.emplType, // 招聘类型
                         positionURL: item.positionURL // 岗位详情
                     }        
-                    console.log(job.company)  //控制台输出岗位名
+                    console.log(job.name)  //控制台输出岗位名
                     if (job.company) {
                         jobs.push(job) 
                     } 
@@ -71,60 +132,5 @@ export async function getJobs(ctx: Koa.Context) {
     
     ctx.body = {
         data: jobs
-    }
-}
-
-
-/**
- * 获取静态网页数据
- * @param ctx 
- */
-export async function getNews(ctx: Koa.Context) {
-    const url = 'https://voice.hupu.com/nba'
-    const { pageNum = 1 }: routeParams.getNews.request = ctx.query
-    console.log('data=>', ctx.query, typeof ctx.query)
-    let news: {
-        title: string,
-        time: string,
-        comeFrom: string
-    }[] = []
-    await new Promise((resolve) => {
-        https.get(url + '/' + pageNum, (res) => { //通过get方法获取对应地址中的页面信息
-            let chunks: any[] = []
-            let size = 0
-            res.on('data', (chunk) => { //监听事件 传输
-                chunks.push(chunk)
-                size += chunk.length
-            })
-            res.on('end', () => { //数据传输完
-                let data = Buffer.concat(chunks, size) 
-                let html = data.toString()
-                let $ = cheerio.load(html, {decodeEntities: false}); //cheerio模块开始处理 DOM处理
-                
-                $(".news-list li").each(function(){   // 新闻列表
-                    let oneNews: {
-                        title: string,
-                        time: string,
-                        comeFrom: string,
-                        link: string
-                    } = {
-                        title: $(this).find('h4 a').text(), // 新闻名字
-                        time: $(this).find('.otherInfo .time').attr('title'),
-                        comeFrom: $(this).find('.otherInfo .comeFrom a').text(),
-                        link: $(this).find('h4 a').attr('href')
-                    }
-
-                    if (oneNews.title) {
-                        console.log(oneNews.title)  //控制台输出岗位名
-                        news.push(oneNews) 
-                    } 
-                })
-                resolve(news)
-            })
-        })
-    })
-    
-    ctx.body = {
-        data: news
     }
 }

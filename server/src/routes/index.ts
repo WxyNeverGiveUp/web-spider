@@ -1,6 +1,7 @@
 import { Route } from "../lib/route"
 import { test } from "../controller/test"
-import { getJobs, getNews } from "../controller";
+import { getJobs, getNews, testRedis } from "../controller/index";
+
 
 export = [new Route({
     cmd:'test',
@@ -14,4 +15,8 @@ export = [new Route({
     cmd:'lagou/jobs',
     handler: [getJobs],
     method: "get"
+}), new Route({
+    cmd: 'testRedis',
+    handler:[testRedis],
+    method: 'get'
 })]

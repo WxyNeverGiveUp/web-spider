@@ -40,7 +40,6 @@ class RequestClass {
             }
         })
     }
-
 }
 
 export const commonRequest = new RequestClass()
