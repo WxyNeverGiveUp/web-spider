@@ -1,6 +1,6 @@
 import { Route } from "../lib/route"
 import { test } from "../controller/test"
-import { getJobs, getNews, testRedis } from "../controller/index";
+import { getJobs, getNews, testRedis, commonGetJobs } from "../controller/index";
 
 
 export = [new Route({
@@ -17,6 +17,10 @@ export = [new Route({
     method: "get"
 }), new Route({
     cmd: 'testRedis',
-    handler:[testRedis],
+    handler: [testRedis],
+    method: 'get'
+}), new Route({
+    cmd: 'commonGetJobs',
+    handler: [commonGetJobs],
     method: 'get'
 })]

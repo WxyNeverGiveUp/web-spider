@@ -17,16 +17,6 @@ export class MysqlModel<T> {
     constructor(opts: ModelNewParams) {
         this.table = opts.table
     }
-    /**
-     * mysql操作查询条件/插入操作使用对象可能的数据结构
-     * @template 单个插入，'hi'为字段,'lo'为值的情况
-     *      {
-     *          'hi':'lo'
-     *      }
-     * @template   批量插入/更新 
-     * 注 数组中对象的key要相同
-     *  [{"hi": 1}, {"hi": 2}]
-     */
     async insert(data: T) {
         return mysqlOp.insert(this.table, data)
     }

@@ -71,8 +71,21 @@ declare namespace Config {
 }
 
 declare namespace mysqlTable {
-    type message = {
-        name: string
+    type job = {
+        id?: number, // 唯一ID
+        company: string, // 公司名
+        name: string, // 岗位
+        city: string, // 地区
+        salary: string, // 薪资
+        scale:  string, // 规模
+        edu_level: string, // 教育要求
+        exp: string, // 工作年限
+        time: string, // 发布时间
+        url: string, // 网址
+        empl_type: string, // 招聘类型
+        welfare: string, // 福利待遇
+        skilltag: string, // 技能
+        position_url: string // 岗位详情
     }
 }
 
