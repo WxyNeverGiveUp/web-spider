@@ -28,7 +28,7 @@
     "pug": "^2.0.0-rc.1",
     "puppeteer": "^1.13.0",
     "puppeteer-core": "^1.13.0",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "wrk": "^1.2.0"
   },
   "devDependencies": {
